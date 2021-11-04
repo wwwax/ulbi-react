@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import List from "./components/List";
 import CustomButton from "./components/ui/button/CustomButton";
 import CustomInput from "./components/ui/input/CustomInput";
@@ -23,6 +23,7 @@ const App = () => {
       description: "SASS - CSS preprocessor",
     },
   ]);
+
   const [colors, setColors] = useState([
     {
       id: 1,
@@ -41,6 +42,9 @@ const App = () => {
     },
   ]);
 
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
   const increment = () => {
     setCounter(counter + 1);
   };
@@ -54,12 +58,24 @@ const App = () => {
   };
 
   const onInputChange = (e) => {
-    return setInputValue(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const addNewPost = (e) => {
     e.preventDefault();
-    console.log("add new post");
+
+    const newPost = {
+      id: Date.now(),
+      title,
+      description,
+    };
+
+    console.log(newPost);
+
+    setPosts((posts) => [...posts, newPost]);
+
+    setTitle("");
+    setDescription("");
   };
 
   return (
@@ -94,8 +110,18 @@ const App = () => {
       <div>
         <h2>Form</h2>
         <form>
-          <CustomInput type="text" placeholder="post title" />
-          <CustomInput type="text" placeholder="post description" />
+          <CustomInput
+            type="text"
+            placeholder="post title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <CustomInput
+            type="text"
+            placeholder="post description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
           <CustomButton onClick={addNewPost}>Add Post</CustomButton>
         </form>
         <hr />
