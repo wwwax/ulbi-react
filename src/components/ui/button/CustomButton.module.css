@@ -1,0 +1,16 @@
+.customButton {
+  display: block;
+  padding: 6px 12px;
+  background-color: #2caf2c;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.customButton:hover {
+  background-color: lightgreen;
+}
