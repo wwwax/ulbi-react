@@ -1,5 +1,4 @@
 .customButton {
-  display: block;
   padding: 6px 12px;
   background-color: #2caf2c;
   font-family: inherit;
@@ -9,6 +8,7 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
+  transition: background-color 0.2s linear;
 }
 
 .customButton:hover {

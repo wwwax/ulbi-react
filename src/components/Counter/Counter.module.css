@@ -1,0 +1,19 @@
+.counter {
+  background-color: #be2929;
+  padding: 20px;
+  color: #fff;
+}
+
+.counter__title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.counter__btnWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.counter__btnWrapper button {
+  margin: 0 10px;
+}

@@ -1,11 +1,8 @@
-import { useState, useRef } from "react";
-import List from "./components/List";
-import CustomButton from "./components/ui/button/CustomButton";
-import CustomInput from "./components/ui/input/CustomInput";
+import { useState } from "react";
+import Header from "./components/Header";
+import Counter from "./components/Counter";
 
-const App = () => {
-  const [counter, setCounter] = useState(0);
-  const [inputValue, setInputValue] = useState("");
+function App() {
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -42,92 +39,14 @@ const App = () => {
     },
   ]);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  const increment = () => {
-    setCounter(counter + 1);
-  };
-
-  const decrement = () => {
-    setCounter(counter - 1);
-  };
-
-  const reset = () => {
-    setCounter(0);
-  };
-
-  const onInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const addNewPost = (e) => {
-    e.preventDefault();
-
-    const newPost = {
-      id: Date.now(),
-      title,
-      description,
-    };
-
-    console.log(newPost);
-
-    setPosts((posts) => [...posts, newPost]);
-
-    setTitle("");
-    setDescription("");
-  };
-
   return (
-    <div className="app">
-      <div className="header">
-        <h2>Awesome React 2021</h2>
-        <hr />
-      </div>
-
-      <div className="counter">
-        <h2>Counter: {counter}</h2>
-        <div>
-          <button onClick={decrement}>dec</button>
-          <button onClick={reset}>res</button>
-          <button onClick={increment}>inc</button>
-        </div>
-        <hr />
-      </div>
-
-      <div className="input-section">
-        <h2>Input Value: {inputValue}</h2>
-        <input type="text" value={inputValue} onChange={onInputChange} />
-        <hr />
-      </div>
-
-      <div>
-        <List items={posts} title="Posts" />
-        <List items={colors} title="Colors" />
-        <hr />
-      </div>
-
-      <div>
-        <h2>Form</h2>
-        <form>
-          <CustomInput
-            type="text"
-            placeholder="post title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <CustomInput
-            type="text"
-            placeholder="post description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <CustomButton onClick={addNewPost}>Add Post</CustomButton>
-        </form>
-        <hr />
+    <div>
+      <Header />
+      <div className="container">
+        <Counter />
       </div>
     </div>
   );
-};
+}
 
 export default App;

@@ -1,11 +1,13 @@
 import style from "./CustomButton.module.css";
 
-const CustomButton = ({ children, ...props }) => {
+function CustomButton({ children, ...props }) {
+  console.log(props);
+
   return (
     <button {...props} className={style.customButton}>
       {children}
     </button>
   );
-};
+}
 
 export default CustomButton;
