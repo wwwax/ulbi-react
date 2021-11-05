@@ -1,10 +1,11 @@
-import ListItem from "./ListItem";
+import ListItem from "../ListItem";
+import style from "./List.module.css";
 
-const List = ({ items, title }) => {
+const List = ({ title, items }) => {
   return (
-    <div className="list">
-      <h2>{title}</h2>
-      <ul>
+    <div className={style.listContainer}>
+      <h2 className={style.listTitle}>{title}</h2>
+      <ul className={style.list}>
         {items.map((item) => (
           <ListItem item={item} key={item.id} />
         ))}

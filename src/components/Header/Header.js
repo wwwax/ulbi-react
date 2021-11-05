@@ -1,9 +1,10 @@
 import style from "./Header.module.css";
+import logo from "../../img/logo.png";
 
 function Header() {
   return (
     <div className={style.header}>
-      <h2>Awesome React 2021</h2>
+      <img className={style.header__logo} src={logo} alt="logo" />
     </div>
   );
 }

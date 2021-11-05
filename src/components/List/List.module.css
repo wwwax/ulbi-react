@@ -1,0 +1,10 @@
+.listTitle {
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.list {
+  list-style: none;
+}

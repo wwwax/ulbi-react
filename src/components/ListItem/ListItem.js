@@ -1,9 +1,12 @@
+import CustomButton from "../UI/CustomButton";
+import style from "./ListItem.module.css";
+
 const ListItem = ({ item }) => {
   return (
-    <li className="list-item">
-      <h3>{item.title}</h3>
-      <p>{item.description}</p>
-      <button>delete</button>
+    <li className={style.listItem}>
+      <h3 className={style.listItemTitle}>{item.title}</h3>
+      <p className={style.listItemDesc}>{item.description}</p>
+      <CustomButton>delete</CustomButton>
     </li>
   );
 };

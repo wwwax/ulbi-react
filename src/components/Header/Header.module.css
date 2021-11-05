@@ -5,3 +5,7 @@
   background-color: #096666;
   color: #fff;
 }
+
+.header__logo {
+  width: 64px;
+}

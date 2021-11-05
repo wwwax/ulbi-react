@@ -21,7 +21,7 @@ function Counter() {
     <div className={style.counter}>
       <h2 className={style.counter__title}>Counter: {counter}</h2>
       <div className={style.counter__btnWrapper}>
-        <CustomButton onClick={decrement} disabled>dec</CustomButton>
+        <CustomButton onClick={decrement}>dec</CustomButton>
         <CustomButton onClick={reset}>res</CustomButton>
         <CustomButton onClick={increment}>inc</CustomButton>
       </div>
