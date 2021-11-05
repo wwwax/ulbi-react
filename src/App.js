@@ -1,13 +1,25 @@
+import { useState } from "react";
 import Header from "./components/Header";
-import List from "./components/List";
-import { posts } from "./data";
+import Posts from "./components/Posts";
+import { postsData } from "./data";
 
 function App() {
+  const [posts, setPosts] = useState(postsData);
+
+  const addNewPost = (newPost) => {
+    setPosts((posts) => {
+      return {
+        ...posts,
+        data: [...posts.data, newPost],
+      };
+    });
+  };
+
   return (
-    <div>
+    <div className="app">
       <Header />
       <div className="container">
-        <List title={posts.title} items={posts.data} />
+        <Posts posts={posts} addNewPost={addNewPost} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-const posts = {
+const postsData = {
   title: "posts",
   data: [
     {
@@ -37,4 +37,4 @@ const colors = [
   },
 ];
 
-export { posts, colors };
+export { postsData, colors };

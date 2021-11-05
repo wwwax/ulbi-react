@@ -1,46 +1,57 @@
 import { useState } from "react";
+import CustomInput from "../UI/CustomInput";
+import CustomButton from "../UI/CustomButton";
+import style from "./PostCreator.module.css";
 
-function PostCreator() {
+function PostCreator({ addNewPost }) {
   const [post, setPost] = useState({
     title: "",
     description: "",
   });
 
-  const addNewPost = (e) => {
+  const onAddNewPostClick = (e) => {
     e.preventDefault();
 
     const newPost = {
       id: Date.now(),
-      title,
-      description,
+      title: post.title,
+      description: post.description,
     };
 
-    setPosts((posts) => [...posts, newPost]);
+    addNewPost(newPost);
 
-    setTitle("");
-    setDescription("");
+    setPost({
+      title: "",
+      description: "",
+    });
   };
 
   return (
-    <div>
-      <h2>Form</h2>
-      <form>
-        <CustomInput
-          type="text"
-          placeholder="post title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <CustomInput
-          type="text"
-          placeholder="post description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <CustomButton onClick={addNewPost}>Add Post</CustomButton>
-      </form>
-      <hr />
-    </div>
+    <form className={style.postCreatorForm}>
+      <CustomInput
+        type="text"
+        placeholder="post title"
+        value={post.title}
+        onChange={(e) =>
+          setPost((post) => ({
+            ...post,
+            title: e.target.value,
+          }))
+        }
+      />
+      <CustomInput
+        type="text"
+        placeholder="post description"
+        value={post.description}
+        onChange={(e) =>
+          setPost((post) => ({
+            ...post,
+            description: e.target.value,
+          }))
+        }
+      />
+      <CustomButton onClick={onAddNewPostClick}>Add Post</CustomButton>
+    </form>
   );
 }
 

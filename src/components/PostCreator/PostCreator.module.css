@@ -1,0 +1,9 @@
+.postCreatorForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.postCreatorForm input {
+  margin-bottom: 10px;
+}
