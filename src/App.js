@@ -15,11 +15,18 @@ function App() {
     });
   };
 
+  const deletePost = (id) => {
+    setPosts((posts) => ({
+      ...posts,
+      data: posts.data.filter((post) => post.id !== id),
+    }));
+  };
+
   return (
     <div className="app">
       <Header />
       <div className="container">
-        <Posts posts={posts} addNewPost={addNewPost} />
+        <Posts posts={posts} addNewPost={addNewPost} deletePost={deletePost} />
       </div>
     </div>
   );

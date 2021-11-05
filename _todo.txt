@@ -1,15 +1,19 @@
-  очистить апп компонент
-  создать компонент хедер
+    очистить апп компонент
+    создать компонент хедер
 users component
-  отрендерить компонент post list
-  style post list item
-  отрендерить компонент каунтер
-  разбить стили
-  подключить кастомный батон
-  add post creator
+    отрендерить компонент post list
+    style post list item
+    отрендерить компонент каунтер
+    разбить стили
+    подключить кастомный батон
+    add post creator
 include sass to project
 add primary color to sass variable
 include pt-sans font
-  post-creator styles
-  add new-post method
+    post-creator styles
+    add new-post method
 add border-radius to variable
+    add remove-post-method
+mobile view
+tablet view
+desktop view
