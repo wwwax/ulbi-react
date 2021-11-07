@@ -1,6 +1,6 @@
     очистить апп компонент
     создать компонент хедер
-users component
+    users component
     отрендерить компонент post list
     style post list item
     отрендерить компонент каунтер
