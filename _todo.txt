@@ -7,13 +7,8 @@
     разбить стили
     подключить кастомный батон
     add post creator
-include sass to project
-add primary color to sass variable
-include pt-sans font
     post-creator styles
     add new-post method
-add border-radius to variable
     add remove-post-method
-mobile view
-tablet view
-desktop view
+    sort-posts
+search-filter

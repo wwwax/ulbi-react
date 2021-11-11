@@ -1,23 +1,20 @@
-const postsData = {
-  title: "posts",
-  data: [
-    {
-      id: 1,
-      title: "JavaScript",
-      description: "JavaScript - programming language",
-    },
-    {
-      id: 2,
-      title: "React",
-      description: "React - JavaScript library",
-    },
-    {
-      id: 3,
-      title: "SASS",
-      description: "SASS - CSS preprocessor",
-    },
-  ],
-};
+const postsData = [
+  {
+    id: 1,
+    title: "Alabama",
+    description: "France",
+  },
+  {
+    id: 2,
+    title: "Madrid",
+    description: "Germany",
+  },
+  {
+    id: 3,
+    title: "Barcelona",
+    description: "Egypt",
+  },
+];
 
 const colors = [
   {
