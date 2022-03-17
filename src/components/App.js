@@ -1,18 +1,29 @@
-import PostItem from "./PostItem";
+import { useState } from "react";
+import PostList from "./PostList";
 import styles from "./App.module.css";
 
-function App() {
+export default function App() {
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      title: "HTML",
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    },
+    {
+      id: 2,
+      title: "CSS",
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, perspiciatis quia nihil animi illum cum neque nesciunt maiores ducimus nam!",
+    },
+    {
+      id: 3,
+      title: "JavaScript",
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, perspiciatis!",
+    },
+  ]);
+
   return (
     <div className={styles.app}>
-      <PostItem
-        post={{
-          id: 1,
-          title: "Javascript",
-          body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, perspiciatis quia nihil animi illum cum neque nesciunt maiores ducimus nam!",
-        }}
-      />
+      <PostList posts={posts} title={"Frontend"} />
     </div>
   );
 }
-
-export default App;

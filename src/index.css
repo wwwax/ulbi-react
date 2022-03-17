@@ -8,3 +8,11 @@
 *::after {
   box-sizing: border-box;
 }
+
+html {
+  font-family: consolas;
+}
+
+button {
+  font-family: inherit;
+}

@@ -1,6 +1,12 @@
 .postItem {
-  border: 2px solid cornflowerblue;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  margin: 10px 0;
+  padding: 10px 0;
+  border: 4px dashed cornflowerblue;
+}
+
+.postItem__content {
+  width: 50%;
 }
