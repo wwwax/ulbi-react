@@ -1,0 +1,6 @@
+.postItem {
+  border: 2px solid cornflowerblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
