@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
 import CustomSelect from "./ui/CustomSelect";
@@ -28,7 +28,21 @@ export default function App() {
 
   const [searchQuery, setSearchQuery] = useState("");
 
-  const sortedPosts = getSortedPosts();
+  const sortedPosts = useMemo(() => {
+    if (selectedSort) {
+      return [...posts].sort((a, b) =>
+        a[selectedSort].localeCompare(b[selectedSort])
+      );
+    } else {
+      return posts;
+    }
+  }, [selectedSort, posts]);
+
+  const sortedAndFilteredPosts = useMemo(() => {
+    return sortedPosts.filter((post) =>
+      post.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery, sortedPosts]);
 
   function addNewPost(post) {
     setPosts((posts) => [...posts, post]);
@@ -40,16 +54,6 @@ export default function App() {
 
   function sortPosts(sort) {
     setSelectedSort(sort);
-  }
-
-  function getSortedPosts() {
-    if (selectedSort) {
-      return [...posts].sort((a, b) =>
-        a[selectedSort].localeCompare(b[selectedSort])
-      );
-    } else {
-      return posts;
-    }
   }
 
   return (
@@ -66,9 +70,7 @@ export default function App() {
       <CustomInput
         placeholder="Search..."
         value={searchQuery}
-        onChange={(e) => {
-          console.log("e.target.value :>> ", e.target.value);
-        }}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
 
       <CustomSelect
@@ -87,10 +89,14 @@ export default function App() {
         onSelectChange={sortPosts}
       />
 
-      {posts.length === 0 ? (
+      {sortedAndFilteredPosts.length === 0 ? (
         <h2 style={{ textAlign: "center" }}>Empty List</h2>
       ) : (
-        <PostList posts={sortedPosts} title={"Posts"} deletePost={deletePost} />
+        <PostList
+          posts={sortedAndFilteredPosts}
+          title={"Posts"}
+          deletePost={deletePost}
+        />
       )}
     </div>
   );
