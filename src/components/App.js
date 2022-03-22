@@ -23,12 +23,20 @@ export default function App() {
     },
   ]);
 
-  const [postTitle, setPostTitle] = useState("");
+  const [post, setPost] = useState({
+    title: "",
+    body: "",
+  });
 
   const addNewPost = (e) => {
     e.preventDefault();
 
-    console.log("postTitle :>> ", postTitle);
+    setPosts((posts) => [...posts, { ...post, id: Date.now() }]);
+
+    setPost({
+      title: "",
+      body: "",
+    });
   };
 
   return (
@@ -37,10 +45,19 @@ export default function App() {
         <CustomInput
           type="text"
           placeholder="Post name"
-          value={postTitle}
-          onChange={(e) => setPostTitle(e.target.value)}
+          value={post.title}
+          onChange={(e) =>
+            setPost((post) => ({ ...post, title: e.target.value }))
+          }
         />
-        <CustomInput type="text" placeholder="Post description" />
+        <CustomInput
+          type="text"
+          placeholder="Post description"
+          value={post.body}
+          onChange={(e) =>
+            setPost((post) => ({ ...post, body: e.target.value }))
+          }
+        />
         <CustomButton onClick={addNewPost}>Create</CustomButton>
       </form>
 
