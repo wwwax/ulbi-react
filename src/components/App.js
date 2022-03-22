@@ -1,8 +1,7 @@
+import styles from "./App.module.css";
 import { useState } from "react";
 import PostList from "./PostList";
-import styles from "./App.module.css";
-import CustomButton from "./ui/CustomButton";
-import CustomInput from "./ui/CustomInput";
+import PostForm from "./PostForm";
 
 export default function App() {
   const [posts, setPosts] = useState([
@@ -23,45 +22,15 @@ export default function App() {
     },
   ]);
 
-  const [post, setPost] = useState({
-    title: "",
-    body: "",
-  });
+  const addNewPost = (post) => setPosts((posts) => [...posts, post]);
 
-  const addNewPost = (e) => {
-    e.preventDefault();
-
-    setPosts((posts) => [...posts, { ...post, id: Date.now() }]);
-
-    setPost({
-      title: "",
-      body: "",
-    });
-  };
+  const deletePost = (id) =>
+    setPosts((posts) => posts.filter((post) => post.id !== id));
 
   return (
     <div className={styles.app}>
-      <form>
-        <CustomInput
-          type="text"
-          placeholder="Post name"
-          value={post.title}
-          onChange={(e) =>
-            setPost((post) => ({ ...post, title: e.target.value }))
-          }
-        />
-        <CustomInput
-          type="text"
-          placeholder="Post description"
-          value={post.body}
-          onChange={(e) =>
-            setPost((post) => ({ ...post, body: e.target.value }))
-          }
-        />
-        <CustomButton onClick={addNewPost}>Create</CustomButton>
-      </form>
-
-      <PostList posts={posts} title={"Posts"} />
+      <PostForm addNewPost={addNewPost} />
+      <PostList posts={posts} title={"Posts"} deletePost={deletePost} />
     </div>
   );
 }

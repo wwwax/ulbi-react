@@ -1,4 +1,5 @@
 import styles from "./PostItem.module.css";
+import CustomButton from "./ui/CustomButton";
 
 export default function PostItem(props) {
   return (
@@ -9,7 +10,9 @@ export default function PostItem(props) {
       </div>
 
       <div className={styles.postItem__btns}>
-        <button>Delete</button>
+        <CustomButton onClick={() => props.deletePost(props.post.id)}>
+          Delete
+        </CustomButton>
       </div>
     </div>
   );
