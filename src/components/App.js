@@ -3,6 +3,7 @@ import { useState } from "react";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
 import CustomSelect from "./ui/CustomSelect";
+import CustomInput from "./ui/CustomInput";
 
 export default function App() {
   const [posts, setPosts] = useState([
@@ -25,15 +26,31 @@ export default function App() {
 
   const [selectedSort, setSelectedSort] = useState("");
 
-  const addNewPost = (post) => setPosts((posts) => [...posts, post]);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const deletePost = (id) =>
+  const sortedPosts = getSortedPosts();
+
+  function addNewPost(post) {
+    setPosts((posts) => [...posts, post]);
+  }
+
+  function deletePost(id) {
     setPosts((posts) => posts.filter((post) => post.id !== id));
+  }
 
-  const sortPosts = (sort) => {
+  function sortPosts(sort) {
     setSelectedSort(sort);
-    setPosts((posts) => posts.sort((a, b) => a[sort].localeCompare(b[sort])));
-  };
+  }
+
+  function getSortedPosts() {
+    if (selectedSort) {
+      return [...posts].sort((a, b) =>
+        a[selectedSort].localeCompare(b[selectedSort])
+      );
+    } else {
+      return posts;
+    }
+  }
 
   return (
     <div className={styles.app}>
@@ -43,6 +60,14 @@ export default function App() {
         style={{
           margin: "20px 0",
           backgroundColor: "cornflowerblue",
+        }}
+      />
+
+      <CustomInput
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={(e) => {
+          console.log("e.target.value :>> ", e.target.value);
         }}
       />
 
@@ -65,7 +90,7 @@ export default function App() {
       {posts.length === 0 ? (
         <h2 style={{ textAlign: "center" }}>Empty List</h2>
       ) : (
-        <PostList posts={posts} title={"Posts"} deletePost={deletePost} />
+        <PostList posts={sortedPosts} title={"Posts"} deletePost={deletePost} />
       )}
     </div>
   );
