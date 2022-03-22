@@ -30,7 +30,11 @@ export default function App() {
   return (
     <div className={styles.app}>
       <PostForm addNewPost={addNewPost} />
-      <PostList posts={posts} title={"Posts"} deletePost={deletePost} />
+      {posts.length === 0 ? (
+        <h2 style={{ textAlign: "center" }}>Empty List</h2>
+      ) : (
+        <PostList posts={posts} title={"Posts"} deletePost={deletePost} />
+      )}
     </div>
   );
 }
