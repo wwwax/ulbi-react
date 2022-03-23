@@ -1,0 +1,10 @@
+.btn {
+  padding: 8px 10px;
+  background-color: cornflowerblue;
+  border: none;
+  width: 100%;
+  font-family: consolas;
+  font-size: 14px;
+  color: white;
+  text-transform: uppercase;
+}

@@ -1,70 +1,34 @@
-import styles from "./App.module.css";
-import { useState, useMemo } from "react";
-import PostList from "./PostList";
-import PostForm from "./PostForm";
-import PostFilter from "./PostFilter";
+import "./App.module.css";
+import { useState } from "react";
+import ArticleForm from "./ArticleForm";
+import ArticleList from "./ArticleList";
 
 export default function App() {
-  const [posts, setPosts] = useState([
+  const [articles, setArticles] = useState([
     {
       id: 1,
-      title: "HTML",
-      body: "abcd",
+      title: "Tortor",
+      text: "Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada.",
     },
     {
       id: 2,
-      title: "CSS",
-      body: "cdef",
-    },
-    {
-      id: 3,
-      title: "JavaScript",
-      body: "bcde",
+      title: "Malesuada",
+      text: "Nulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
   ]);
 
-  const [filter, setFilter] = useState({
-    sort: "",
-    query: "",
-  });
-
-  const sortedPosts = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) =>
-        a[filter.sort].localeCompare(b[filter.sort])
-      );
-    } else {
-      return posts;
-    }
-  }, [filter.sort, posts]);
-
-  const sortedAndFilteredPosts = useMemo(() => {
-    return sortedPosts.filter((post) =>
-      post.title.toLowerCase().includes(filter.query.toLowerCase())
-    );
-  }, [filter.query, sortedPosts]);
-
-  function addNewPost(post) {
-    setPosts((posts) => [...posts, post]);
+  function addArticle(article) {
+    setArticles((articles) => [...articles, article]);
   }
 
-  function deletePost(id) {
-    setPosts((posts) => posts.filter((post) => post.id !== id));
+  function deleteArticle(id) {
+    setArticles((articles) => articles.filter((article) => article.id !== id));
   }
 
   return (
-    <div className={styles.app}>
-      <PostForm addNewPost={addNewPost} />
-
-      <hr style={{ margin: "20px 0" }} />
-
-      <PostFilter filter={filter} setFilter={setFilter} />
-
-      <PostList
-        posts={sortedAndFilteredPosts}
-        title={"Posts"}
-        deletePost={deletePost}
-      />
+    <div>
+      <ArticleForm addArticle={addArticle} />
+      <ArticleList articles={articles} deleteArticle={deleteArticle} />
     </div>
   );
 }

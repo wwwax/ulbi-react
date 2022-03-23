@@ -12,6 +12,7 @@ export default function PostForm({ addNewPost }) {
     e.preventDefault();
 
     addNewPost({ ...post, id: Date.now() });
+
     setPost({
       title: "",
       body: "",

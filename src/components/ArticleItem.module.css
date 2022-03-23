@@ -1,0 +1,12 @@
+.item {
+  border: 2px dashed cornflowerblue;
+  padding: 10px;
+  font-family: consolas;
+  font-size: 12px;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.title {
+  text-align: center;
+}
