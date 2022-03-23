@@ -2,10 +2,10 @@ export default function CustomSelect({
   defaultValue,
   value,
   options,
-  onSelectChange,
+  onChange,
 }) {
   return (
-    <select value={value} onChange={(e) => onSelectChange(e.target.value)}>
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
       <option disabled value="">
         {defaultValue}
       </option>

@@ -2,8 +2,7 @@ import styles from "./App.module.css";
 import { useState, useMemo } from "react";
 import PostList from "./PostList";
 import PostForm from "./PostForm";
-import CustomSelect from "./ui/CustomSelect";
-import CustomInput from "./ui/CustomInput";
+import PostFilter from "./PostFilter";
 
 export default function App() {
   const [posts, setPosts] = useState([
@@ -24,25 +23,26 @@ export default function App() {
     },
   ]);
 
-  const [selectedSort, setSelectedSort] = useState("");
-
-  const [searchQuery, setSearchQuery] = useState("");
+  const [filter, setFilter] = useState({
+    sort: "",
+    query: "",
+  });
 
   const sortedPosts = useMemo(() => {
-    if (selectedSort) {
+    if (filter.sort) {
       return [...posts].sort((a, b) =>
-        a[selectedSort].localeCompare(b[selectedSort])
+        a[filter.sort].localeCompare(b[filter.sort])
       );
     } else {
       return posts;
     }
-  }, [selectedSort, posts]);
+  }, [filter.sort, posts]);
 
   const sortedAndFilteredPosts = useMemo(() => {
     return sortedPosts.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase())
+      post.title.toLowerCase().includes(filter.query.toLowerCase())
     );
-  }, [searchQuery, sortedPosts]);
+  }, [filter.query, sortedPosts]);
 
   function addNewPost(post) {
     setPosts((posts) => [...posts, post]);
@@ -52,52 +52,19 @@ export default function App() {
     setPosts((posts) => posts.filter((post) => post.id !== id));
   }
 
-  function sortPosts(sort) {
-    setSelectedSort(sort);
-  }
-
   return (
     <div className={styles.app}>
       <PostForm addNewPost={addNewPost} />
 
-      <hr
-        style={{
-          margin: "20px 0",
-          backgroundColor: "cornflowerblue",
-        }}
-      />
+      <hr style={{ margin: "20px 0" }} />
 
-      <CustomInput
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+      <PostFilter filter={filter} setFilter={setFilter} />
 
-      <CustomSelect
-        defaultValue="Sorting"
-        value={selectedSort}
-        options={[
-          {
-            name: "Sort by name",
-            value: "title",
-          },
-          {
-            name: "Sort by description",
-            value: "body",
-          },
-        ]}
-        onSelectChange={sortPosts}
+      <PostList
+        posts={sortedAndFilteredPosts}
+        title={"Posts"}
+        deletePost={deletePost}
       />
-
-      {sortedAndFilteredPosts.length === 0 ? (
-        <h2 style={{ textAlign: "center" }}>Empty List</h2>
-      ) : (
-        <PostList
-          posts={sortedAndFilteredPosts}
-          title={"Posts"}
-          deletePost={deletePost}
-        />
-      )}
     </div>
   );
 }
