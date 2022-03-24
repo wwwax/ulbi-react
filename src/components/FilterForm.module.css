@@ -1,0 +1,8 @@
+.form {
+  border: 2px solid cornflowerblue;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 10px;
+}

@@ -1,7 +1,8 @@
 import "./App.module.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ArticleForm from "./ArticleForm";
 import ArticleList from "./ArticleList";
+import FilterForm from "./FilterForm";
 
 export default function App() {
   const [articles, setArticles] = useState([
@@ -12,10 +13,34 @@ export default function App() {
     },
     {
       id: 2,
-      title: "Malesuada",
+      title: "Malasuada",
+      text: "Tulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+    },
+    {
+      id: 3,
+      title: "Malosuade",
       text: "Nulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
   ]);
+
+  const [filter, setFilter] = useState({
+    method: "",
+    query: "",
+  });
+
+  const sortedArticles = useMemo(() => {
+    return filter.method
+      ? [...articles].sort((a, b) =>
+          a[filter.method].localeCompare(b[filter.method])
+        )
+      : articles;
+  }, [filter.method, articles]);
+
+  const sortedAndFilteredArticles = useMemo(() => {
+    return sortedArticles.filter((article) =>
+      article.title.toLowerCase().includes(filter.query.toLowerCase())
+    );
+  }, [filter.query, sortedArticles]);
 
   function addArticle(article) {
     setArticles((articles) => [...articles, article]);
@@ -28,7 +53,11 @@ export default function App() {
   return (
     <div>
       <ArticleForm addArticle={addArticle} />
-      <ArticleList articles={articles} deleteArticle={deleteArticle} />
+      <FilterForm filter={filter} setFilter={setFilter} />
+      <ArticleList
+        articles={sortedAndFilteredArticles}
+        deleteArticle={deleteArticle}
+      />
     </div>
   );
 }
