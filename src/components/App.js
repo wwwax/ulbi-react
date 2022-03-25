@@ -3,6 +3,8 @@ import { useState, useMemo } from "react";
 import ArticleForm from "./ArticleForm";
 import ArticleList from "./ArticleList";
 import FilterForm from "./FilterForm";
+import Modal from "./Modal";
+import CustomButton from "../ui/CustomButton";
 
 export default function App() {
   const [articles, setArticles] = useState([
@@ -28,6 +30,8 @@ export default function App() {
     query: "",
   });
 
+  const [showModal, setShowModal] = useState(false);
+
   const sortedArticles = useMemo(() => {
     return filter.method
       ? [...articles].sort((a, b) =>
@@ -44,6 +48,7 @@ export default function App() {
 
   function addArticle(article) {
     setArticles((articles) => [...articles, article]);
+    setShowModal(false);
   }
 
   function deleteArticle(id) {
@@ -52,8 +57,16 @@ export default function App() {
 
   return (
     <div>
-      <ArticleForm addArticle={addArticle} />
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <ArticleForm addArticle={addArticle} />
+      </Modal>
+
+      <CustomButton onClick={() => setShowModal(true)}>
+        Create article
+      </CustomButton>
+
       <FilterForm filter={filter} setFilter={setFilter} />
+
       <ArticleList
         articles={sortedAndFilteredArticles}
         deleteArticle={deleteArticle}
