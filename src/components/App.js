@@ -47,7 +47,7 @@ export default function App() {
   }, [filter.query, sortedArticles]);
 
   function addArticle(article) {
-    setArticles((articles) => [...articles, article]);
+    setArticles((articles) => [article, ...articles]);
     setShowModal(false);
   }
 

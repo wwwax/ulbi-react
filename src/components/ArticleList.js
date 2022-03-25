@@ -1,24 +1,19 @@
+import styles from "./ArticleList.module.css";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ArticleItem from "./ArticleItem";
 
 export default function ArticleList({ articles, deleteArticle }) {
   return articles.length ? (
     <div>
-      {articles.map((article) => (
-        <ArticleItem
-          key={article.id}
-          article={article}
-          deleteArticle={deleteArticle}
-        />
-      ))}
+      <TransitionGroup>
+        {articles.map((article) => (
+          <CSSTransition key={article.id} timeout={500} classNames="article">
+            <ArticleItem article={article} deleteArticle={deleteArticle} />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </div>
   ) : (
-    <h1
-      style={{
-        textAlign: "center",
-        fontFamily: "consolas",
-      }}
-    >
-      Empty List
-    </h1>
+    <h1 className={styles.empty}>Empty List</h1>
   );
 }
