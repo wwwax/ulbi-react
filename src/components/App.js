@@ -1,12 +1,12 @@
 import "./App.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArticleForm from "./ArticleForm";
 import ArticleList from "./ArticleList";
 import FilterForm from "./FilterForm";
 import Modal from "./Modal";
 import CustomButton from "../ui/CustomButton";
 import { useArticles } from "../hooks/useArticles";
-import axios from "axios";
+import ArticleService from "../API/ArticleService";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
@@ -34,12 +34,13 @@ export default function App() {
   }
 
   async function fetchArticles() {
-    const response = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-
-    setArticles(response.data);
+    const articles = await ArticleService.getAll();
+    setArticles(articles);
   }
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
   return (
     <div>
