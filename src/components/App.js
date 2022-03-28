@@ -1,10 +1,11 @@
 import "./App.module.css";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import ArticleForm from "./ArticleForm";
 import ArticleList from "./ArticleList";
 import FilterForm from "./FilterForm";
 import Modal from "./Modal";
 import CustomButton from "../ui/CustomButton";
+import { useArticles } from "../hooks/useArticles";
 
 export default function App() {
   const [articles, setArticles] = useState([
@@ -32,19 +33,11 @@ export default function App() {
 
   const [showModal, setShowModal] = useState(false);
 
-  const sortedArticles = useMemo(() => {
-    return filter.method
-      ? [...articles].sort((a, b) =>
-          a[filter.method].localeCompare(b[filter.method])
-        )
-      : articles;
-  }, [filter.method, articles]);
-
-  const sortedAndFilteredArticles = useMemo(() => {
-    return sortedArticles.filter((article) =>
-      article.title.toLowerCase().includes(filter.query.toLowerCase())
-    );
-  }, [filter.query, sortedArticles]);
+  const sortedAndFilteredArticles = useArticles(
+    articles,
+    filter.method,
+    filter.query
+  );
 
   function addArticle(article) {
     setArticles((articles) => [article, ...articles]);
