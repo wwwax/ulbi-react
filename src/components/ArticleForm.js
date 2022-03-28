@@ -14,7 +14,7 @@ export default function ArticleForm({ addArticle }) {
 
     const newArticle = {
       title: article.title,
-      text: article.text,
+      body: article.text,
       id: Date.now(),
     };
 

@@ -6,25 +6,10 @@ import FilterForm from "./FilterForm";
 import Modal from "./Modal";
 import CustomButton from "../ui/CustomButton";
 import { useArticles } from "../hooks/useArticles";
+import axios from "axios";
 
 export default function App() {
-  const [articles, setArticles] = useState([
-    {
-      id: 1,
-      title: "Tortor",
-      text: "Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada.",
-    },
-    {
-      id: 2,
-      title: "Malasuada",
-      text: "Tulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
-    },
-    {
-      id: 3,
-      title: "Malosuade",
-      text: "Nulla quis lorem ut libero malesuada feugiat. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ]);
+  const [articles, setArticles] = useState([]);
 
   const [filter, setFilter] = useState({
     method: "",
@@ -48,6 +33,14 @@ export default function App() {
     setArticles((articles) => articles.filter((article) => article.id !== id));
   }
 
+  async function fetchArticles() {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+
+    setArticles(response.data);
+  }
+
   return (
     <div>
       <Modal showModal={showModal} setShowModal={setShowModal}>
@@ -57,6 +50,8 @@ export default function App() {
       <CustomButton onClick={() => setShowModal(true)}>
         Create article
       </CustomButton>
+
+      <CustomButton onClick={fetchArticles}>Fetch data</CustomButton>
 
       <FilterForm filter={filter} setFilter={setFilter} />
 

@@ -11,7 +11,7 @@ export default function CustomSelect({ value, onChange }) {
         Choose sort method
       </option>
       <option value="title">Sort by title</option>
-      <option value="text">Sort by text</option>
+      <option value="body">Sort by text</option>
     </select>
   );
 }
