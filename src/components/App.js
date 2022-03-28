@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import CustomButton from "../ui/CustomButton";
 import { useArticles } from "../hooks/useArticles";
 import ArticleService from "../API/ArticleService";
+import Loader from "../ui/Loader";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
@@ -24,6 +25,8 @@ export default function App() {
     filter.query
   );
 
+  const [articlesLoading, setArticlesLoading] = useState(true);
+
   function addArticle(article) {
     setArticles((articles) => [article, ...articles]);
     setShowModal(false);
@@ -34,8 +37,10 @@ export default function App() {
   }
 
   async function fetchArticles() {
+    setArticlesLoading(true);
     const articles = await ArticleService.getAll();
     setArticles(articles);
+    setArticlesLoading(false);
   }
 
   useEffect(() => {
@@ -56,10 +61,14 @@ export default function App() {
 
       <FilterForm filter={filter} setFilter={setFilter} />
 
-      <ArticleList
-        articles={sortedAndFilteredArticles}
-        deleteArticle={deleteArticle}
-      />
+      {articlesLoading ? (
+        <Loader />
+      ) : (
+        <ArticleList
+          articles={sortedAndFilteredArticles}
+          deleteArticle={deleteArticle}
+        />
+      )}
     </div>
   );
 }
