@@ -2,14 +2,10 @@ import axios from "axios";
 
 export default class ArticleService {
   static async getAll() {
-    try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/pffosts"
+    );
 
-      return response.data;
-    } catch (error) {
-      console.log("error :>> ", error);
-    }
+    return response.data;
   }
 }

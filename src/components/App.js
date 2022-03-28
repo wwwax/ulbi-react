@@ -8,6 +8,8 @@ import CustomButton from "../ui/CustomButton";
 import { useArticles } from "../hooks/useArticles";
 import ArticleService from "../API/ArticleService";
 import Loader from "../ui/Loader";
+import useFetching from "../hooks/useFetching";
+import Error from "./Error";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
@@ -25,7 +27,12 @@ export default function App() {
     filter.query
   );
 
-  const [articlesLoading, setArticlesLoading] = useState(true);
+  const [fetchArticles, isArticlesLoading, articlesError] = useFetching(
+    async () => {
+      const articles = await ArticleService.getAll();
+      setArticles(articles);
+    }
+  );
 
   function addArticle(article) {
     setArticles((articles) => [article, ...articles]);
@@ -34,13 +41,6 @@ export default function App() {
 
   function deleteArticle(id) {
     setArticles((articles) => articles.filter((article) => article.id !== id));
-  }
-
-  async function fetchArticles() {
-    setArticlesLoading(true);
-    const articles = await ArticleService.getAll();
-    setArticles(articles);
-    setArticlesLoading(false);
   }
 
   useEffect(() => {
@@ -61,7 +61,9 @@ export default function App() {
 
       <FilterForm filter={filter} setFilter={setFilter} />
 
-      {articlesLoading ? (
+      {articlesError && <Error msg={articlesError} />}
+
+      {isArticlesLoading ? (
         <Loader />
       ) : (
         <ArticleList
