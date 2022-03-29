@@ -15,7 +15,7 @@
 }
 
 .pagination__page_current {
-  border: 2px solid orange;
-  color: orange;
+  color: cornflowerblue;
+  background-color: #fff;
   transition: all 0.2s linear;
 }
