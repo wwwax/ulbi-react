@@ -10,6 +10,8 @@ import ArticleService from "../API/ArticleService";
 import Loader from "../ui/Loader";
 import useFetching from "../hooks/useFetching";
 import Error from "./Error";
+import { getPagesCount } from "../utils/pages";
+import Pagination from "../ui/Pagination";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
@@ -27,10 +29,18 @@ export default function App() {
     filter.query
   );
 
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [limit, setLimit] = useState(10);
+
+  const [page, setPage] = useState(1);
+
   const [fetchArticles, isArticlesLoading, articlesError] = useFetching(
-    async () => {
-      const articles = await ArticleService.getAll();
-      setArticles(articles);
+    async (limit, page) => {
+      const response = await ArticleService.getAll(limit, page);
+      setArticles(response.data);
+      const totalArticlesCount = response.headers["x-total-count"];
+      setTotalPages(getPagesCount(totalArticlesCount, limit));
     }
   );
 
@@ -43,8 +53,13 @@ export default function App() {
     setArticles((articles) => articles.filter((article) => article.id !== id));
   }
 
+  function changePage(page) {
+    setPage(page);
+    fetchArticles(limit, page);
+  }
+
   useEffect(() => {
-    fetchArticles();
+    fetchArticles(limit, page);
   }, []);
 
   return (
@@ -53,13 +68,15 @@ export default function App() {
         <ArticleForm addArticle={addArticle} />
       </Modal>
 
-      <CustomButton onClick={() => setShowModal(true)}>
-        Create article
-      </CustomButton>
-
-      <CustomButton onClick={fetchArticles}>Fetch data</CustomButton>
+      <div style={{ width: "90%", margin: "0 auto" }}>
+        <CustomButton onClick={() => setShowModal(true)}>
+          Create article
+        </CustomButton>
+      </div>
 
       <FilterForm filter={filter} setFilter={setFilter} />
+
+      <Pagination totalPages={totalPages} changePage={changePage} page={page} />
 
       {articlesError && <Error msg={articlesError} />}
 
