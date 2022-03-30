@@ -5,7 +5,7 @@ import FilterForm from "../components/FilterForm";
 import Modal from "../components/Modal";
 import CustomButton from "../ui/CustomButton";
 import { useArticles } from "../hooks/useArticles";
-import ArticleService from "../API/ArticleService";
+import ArticleService from "../api/ArticleService";
 import Loader from "../ui/Loader";
 import useFetching from "../hooks/useFetching";
 import Error from "../components/Error";

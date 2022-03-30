@@ -10,18 +10,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
-/*
-<Routes>
-  <Route path="" element={<Main />}></Route>
-  <Route path="/about" element={<About />} />
-  <Route path="/posts" element={<Posts />} />
-  <Route path="/posts/:id" element={<PostIdPage />} />
-  <Route path="/404" element={<Error />} />
-  <Route path="*" element={<Navigate replace to="/404" />} />
-</Routes>
-
-Или последний роут
-  <Route path="*" element={<Error />} />
-чтоб не перекидывало, а просто показывало ошибку.
-*/

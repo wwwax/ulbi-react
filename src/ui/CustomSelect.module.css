@@ -1,4 +1,6 @@
 .select {
   padding: 10px;
   border: 1px solid cornflowerblue;
+  outline: none;
+  color: cornflowerblue;
 }

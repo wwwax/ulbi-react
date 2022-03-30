@@ -10,6 +10,7 @@
 
 .title {
   text-align: center;
+  text-transform: uppercase;
 }
 
 .itemId {
@@ -23,4 +24,13 @@
   color: cornflowerblue;
   border: 2px solid cornflowerblue;
   border-radius: 50%;
+}
+
+.btn__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item button {
+  width: 48%;
 }
