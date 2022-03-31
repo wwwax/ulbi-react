@@ -1,0 +1,18 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  padding: 20px 0;
+  margin: 0 auto 20px;
+  border: 2px solid cornflowerblue;
+}
+
+.navigation__item {
+  margin: 0 10px;
+  font-family: consolas;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: cornflowerblue;
+  text-decoration: none;
+}

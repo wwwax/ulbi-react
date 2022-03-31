@@ -1,0 +1,17 @@
+.about {
+  border: 2px solid cornflowerblue;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.about__title {
+  font-family: consolas;
+  text-align: center;
+  color: cornflowerblue;
+}
+
+.about__text {
+  padding: 0 20px;
+  font-family: consolas;
+  color: cornflowerblue;
+}

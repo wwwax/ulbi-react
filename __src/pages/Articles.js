@@ -30,7 +30,7 @@ export default function Articles() {
 
   const [totalPages, setTotalPages] = useState(0);
 
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(10); // fix me
 
   const [page, setPage] = useState(1);
 

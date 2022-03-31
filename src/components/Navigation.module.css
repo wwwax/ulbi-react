@@ -1,18 +1,17 @@
 .navigation {
+  background-color: tomato;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 90%;
+  align-items: center;
   padding: 20px 0;
-  margin: 0 auto 20px;
-  border: 2px solid cornflowerblue;
+  list-style: none;
 }
 
-.navigation__item {
+.navigation__link {
   margin: 0 10px;
-  font-family: consolas;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: cornflowerblue;
   text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
 }

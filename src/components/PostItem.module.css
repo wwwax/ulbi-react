@@ -1,0 +1,53 @@
+.post__item {
+  border: 2px solid cornflowerblue;
+  margin: 0 0 1rem 0;
+}
+
+.post__wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0.5rem 0;
+  padding: 0 0 0 1rem;
+}
+
+.post__id {
+  padding: 1rem;
+  color: cornflowerblue;
+  font-weight: bold;
+  font-size: 1.4rem;
+  border: 2px solid cornflowerblue;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.post__content {
+  padding: 0 0 0 1rem;
+}
+
+.post__title {
+  color: cornflowerblue;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.btns__wrapper {
+  padding: 1rem;
+}
+
+.btns__wrapper button {
+  margin: 0 0.5rem 0 0;
+}
+
+.btns__wrapper button:last-child {
+  margin: 0;
+}
+
+.post__body {
+  font-size: 1.2rem;
+}

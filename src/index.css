@@ -1,30 +1,24 @@
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html {
   font-family: consolas;
-  color: cornflowerblue;
+  font-size: 16px;
+  color: #444;
 }
 
-/* react transition group */
-
-.article-enter {
-  transform: translateX(-350px);
+.container {
+  width: 300px;
+  margin: 0 auto;
 }
 
-.article-enter-active {
-  transform: translateX(0);
-  transition: all 500ms ease-in;
-}
-
-.article-exit {
-  opacity: 1;
-}
-
-.article-exit-active {
-  transform: translateX(-350px);
-  transition: all 500ms ease-in;
+@media (min-width: 768px) {
+  .container {
+    width: 700px;
+  }
 }
