@@ -29,15 +29,14 @@ export default function Articles() {
   );
 
   const [totalPages, setTotalPages] = useState(0);
-
-  const [limit, setLimit] = useState(10); // fix me
-
+  const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
   const [fetchArticles, isArticlesLoading, articlesError] = useFetching(
     async (limit, page) => {
       const response = await ArticleService.getAll(limit, page);
       setArticles(response.data);
+
       const totalArticlesCount = response.headers["x-total-count"];
       setTotalPages(getPagesCount(totalArticlesCount, limit));
     }
