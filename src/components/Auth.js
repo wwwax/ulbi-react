@@ -19,12 +19,10 @@ export default function Auth() {
 
         <Switch>
           <Route path="/" component={Home} exact />
-          <div className="container mx-auto">
-            <Route path="/posts" component={Posts} exact />
-            <Route path="/albums" component={Albums} exact />
-            <Route path="/photos" component={Photos} exact />
-            <Route path="/todos" component={Todos} exact />
-          </div>
+          <Route path="/posts" component={Posts} exact />
+          <Route path="/albums" component={Albums} exact />
+          <Route path="/photos" component={Photos} exact />
+          <Route path="/todos" component={Todos} exact />
           <Redirect to="/" />
         </Switch>
       </div>

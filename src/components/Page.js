@@ -35,14 +35,12 @@ export default function Page({ title, url }) {
   if (error) return <Error message={error.message} />;
 
   return (
-    <div className="page">
-      <div className="container">
-        <div className="page__inner">
-          <h1 className="page__title">{title}</h1>
+    <div className="container mx-auto py-10">
+      <h1 className="text-6xl font-fira_light uppercase text-black mb-10">
+        {title}
+      </h1>
 
-          {loading ? <Loading /> : <List data={data} deleteItem={deleteItem} />}
-        </div>
-      </div>
+      {loading ? <Loading /> : <List data={data} deleteItem={deleteItem} />}
     </div>
   );
 }

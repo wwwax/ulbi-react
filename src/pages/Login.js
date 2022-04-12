@@ -12,7 +12,7 @@ export default function Login() {
 
   return (
     <div className="h-screen bg-black flex justify-center items-center relative">
-      <CustsomButton onClick={login} buttonType="bg-primary">
+      <CustsomButton onClick={login} addStyles="bg-primary">
         Login
       </CustsomButton>
 

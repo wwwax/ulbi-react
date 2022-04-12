@@ -2,20 +2,21 @@ import CustsomButton from "./CustsomButton";
 
 export default function List({ data, deleteItem }) {
   return (
-    <div className="list">
+    <div>
       {data.map((item) => (
-        <div className="list__item" key={item.id}>
-          <div className="list__item-header">
-            <span className="list__item-header_id">{item.id}</span>
-            <span className="list__item-header_title">{item.title}</span>
+        <div className="border-4 border-black mb-5 p-5 last:mb-0" key={item.id}>
+          <div className="flex text-6xl mb-4 font-beau">
+            <span className="mr-2">{item.id}</span>
+            <span>{item.title}</span>
           </div>
 
-          <div className="list__btn-wrapper">
-            <CustsomButton primary>Open</CustsomButton>
-            <CustsomButton onClick={() => deleteItem(item.id)}>
-              Delete
-            </CustsomButton>
-          </div>
+          <CustsomButton addStyles="bg-primary mr-5">Open</CustsomButton>
+          <CustsomButton
+            addStyles="bg-secondary"
+            onClick={() => deleteItem(item.id)}
+          >
+            Delete
+          </CustsomButton>
         </div>
       ))}
     </div>

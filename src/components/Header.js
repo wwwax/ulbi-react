@@ -18,7 +18,7 @@ export default function Header() {
         <Navigation />
 
         <Link to="/">
-          <CustsomButton onClick={logout} buttonType='bg-secondary'>
+          <CustsomButton onClick={logout} addStyles='bg-secondary'>
             Logout
           </CustsomButton>
         </Link>
