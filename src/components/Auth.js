@@ -14,17 +14,20 @@ export default function Auth() {
 
   return isAuth ? (
     <BrowserRouter>
-      <Header />
+      <div className="flex flex-col h-screen">
+        <Header />
 
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/posts" component={Posts} exact />
-        <Route path="/albums" component={Albums} exact />
-        <Route path="/photos" component={Photos} exact />
-        <Route path="/todos" component={Todos} exact />
-
-        <Redirect to="/" />
-      </Switch>
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <div className="container mx-auto">
+            <Route path="/posts" component={Posts} exact />
+            <Route path="/albums" component={Albums} exact />
+            <Route path="/photos" component={Photos} exact />
+            <Route path="/todos" component={Todos} exact />
+          </div>
+          <Redirect to="/" />
+        </Switch>
+      </div>
     </BrowserRouter>
   ) : (
     <Login />

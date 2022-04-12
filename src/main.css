@@ -3,5 +3,25 @@
 @tailwind utilities;
 
 .test {
-  color: #ff6347;
+  color: #ff0000;
+}
+
+@font-face {
+  font-family: "beau";
+  src: url("./fonts/BeauRivage-Regular.ttf");
+}
+
+@font-face {
+  font-family: "fira_light";
+  src: url("/fonts/FiraCode-Light.ttf");
+}
+
+@font-face {
+  font-family: "fira_regular";
+  src: url("./fonts/FiraCode-Regular.ttf");
+}
+
+@font-face {
+  font-family: "fira_bold";
+  src: url("/fonts/FiraCode-Bold.ttf");
 }

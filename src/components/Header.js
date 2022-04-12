@@ -13,15 +13,15 @@ export default function Header() {
   }
 
   return (
-    <div className="header">
-      <div className="container">
-        <div className="header__inner">
-          <Navigation />
+    <div className="bg-black py-5">
+      <div className="container mx-auto flex justify-between items-center">
+        <Navigation />
 
-          <Link to="/">
-            <CustsomButton onClick={logout}>Logout</CustsomButton>
-          </Link>
-        </div>
+        <Link to="/">
+          <CustsomButton onClick={logout} buttonType='bg-secondary'>
+            Logout
+          </CustsomButton>
+        </Link>
       </div>
     </div>
   );
