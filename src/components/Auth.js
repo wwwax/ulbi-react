@@ -7,6 +7,7 @@ import Header from "./Header";
 import Posts from "../pages/Posts";
 import Albums from "../pages/Albums";
 import Photos from "../pages/Photos";
+import Todos from "../pages/Todos";
 
 export default function Auth() {
   const { isAuth } = useContext(AuthContext);
@@ -20,6 +21,7 @@ export default function Auth() {
         <Route path="/posts" component={Posts} exact />
         <Route path="/albums" component={Albums} exact />
         <Route path="/photos" component={Photos} exact />
+        <Route path="/todos" component={Todos} exact />
 
         <Redirect to="/" />
       </Switch>

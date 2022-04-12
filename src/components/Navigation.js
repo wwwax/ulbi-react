@@ -26,6 +26,12 @@ export default function Navigation() {
           Photos
         </NavLink>
       </li>
+
+      <li>
+        <NavLink to="/todos" activeClassName="selected">
+          Todos
+        </NavLink>
+      </li>
     </ul>
   );
 }

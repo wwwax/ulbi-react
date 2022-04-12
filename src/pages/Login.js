@@ -11,12 +11,12 @@ export default function Login() {
   }
 
   return (
-    <div className="login">
-      <CustsomButton onClick={login} primary>
+    <div className="h-screen bg-black flex justify-center items-center relative">
+      <CustsomButton onClick={login} primary={true}>
         Login
       </CustsomButton>
 
-      <span className="logo">www4x</span>
+      <span className="text-white font-consolas absolute bottom-4 right-4">www4x</span>
     </div>
   );
 }
